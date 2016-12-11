@@ -1,5 +1,8 @@
 
-public abstract class GridMania 
+public class GridMania 
 {
+	public static void main(String[] args) {
+		
+	}
 
 }
