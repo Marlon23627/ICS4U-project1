@@ -1,12 +1,16 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class ProjectMain {
 
-	public static void main(String[] args) {
+	static int mouseX; // will be used to track mouse clicks throughout the game
+	static int mouseY;
+	
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		// declare and initialize a JFrame
 				JFrame myFrame = new JFrame();
@@ -32,6 +36,26 @@ public class ProjectMain {
 				// make our frame visible
 				myFrame.setVisible(true);
 				
+				GridMania myPanel = new GridMania();
+
+				myPanel.setSize(800, 800);
+				myPanel.setBackground(Color.BLACK);
+
+				// put the panel inside the frame
+				myFrame.setContentPane(myPanel);
+				
+				myPanel.requestFocus();
+
+				// enable mouse motion listener
+				myPanel.addMouseMotionListener(myPanel);
+
+				// enable mouse listener
+				myPanel.addMouseListener(myPanel);
+				
+				while(true){
+					myPanel.run();
+					myPanel.repaint();
+				}
 				
 				
 	}

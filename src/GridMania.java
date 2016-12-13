@@ -1,4 +1,8 @@
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -6,8 +10,10 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public abstract class GridMania extends JPanel 
+public class GridMania extends JPanel implements MouseMotionListener, MouseListener
 {
+	static int gameState = 0; // how we will change the menus
+	
 	BufferedImage mainMenu, ticTac, stones, xWin, oWin, oneWin, twoWin; //menus images
 	BufferedImage xPiece, oPiece, stonePiece; //game component images
 	BufferedImage xPlayer, oPlayer, player1, player2; //which player images
@@ -61,23 +67,105 @@ public abstract class GridMania extends JPanel
 		player2 = ImageIO.read(fileURL);
 		
 		//stones count
-		fileURL = getClass().getResource("TurnsLeft3.png");
+		fileURL = getClass().getResource("TrunsLeft3.png");
 		turn3 = ImageIO.read(fileURL);
 		
-		fileURL = getClass().getResource("TurnsLeft2.png");
+		fileURL = getClass().getResource("TrunsLeft2.png");
 		turn2 = ImageIO.read(fileURL);
 		
-		fileURL = getClass().getResource("TurnsLeft1.png");
+		fileURL = getClass().getResource("TrunsLeft1.png");
 		turn1 = ImageIO.read(fileURL);
 		
-		fileURL = getClass().getResource("TurnsLeft0.png");
+		fileURL = getClass().getResource("TrunsLeft0.png");
 		turn0 = ImageIO.read(fileURL);
 		
 	}
 	
 	public void paintComponent(Graphics g){
-		g.drawImage(mainMenu, 0, 0, null);
+		switch(gameState){
+		
+		case 0: // main menu
+			g.drawImage(mainMenu, 0, 0, null);
+			break;
+		case 1:
+			g.drawImage(ticTac, 0, 0, null);
+			break;
+		
+		case 2:
+			g.drawImage(stones, 0, 0, null);
+			break;
+		
+		}
+		
 	}
 	
-	abstract void run(); 	//how game will run
+	public void run() throws IOException{
+		switch(gameState){
+		
+		case 0: // main menu
+			if(ProjectMain.mouseX <= 382 && ProjectMain.mouseX >= 93){
+				if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
+					GridMania.gameState = 1;
+				}
+			}
+			break;
+		
+		case 1: // tic tact toe
+				TicTacToe playTic = new TicTacToe(); //run the tic tac code
+				playTic.run();
+				break;
+		case 2: 
+				Stones playStone = new Stones(); //run the tic tac code
+				playStone.run();
+				break;
+		}
+		
+	}
+	//how game will run
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		ProjectMain.mouseX = e.getX();
+		ProjectMain.mouseY = e.getX();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
 }
