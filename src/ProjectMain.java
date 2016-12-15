@@ -10,6 +10,10 @@ public class ProjectMain {
 	static int mouseX; // will be used to track mouse clicks throughout the game
 	static int mouseY;
 	
+
+	static TicTacToe ticTacPlay;// static reference to be called throughout
+	static Stones stonesPlay; // static setup
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		// declare and initialize a JFrame
@@ -36,7 +40,10 @@ public class ProjectMain {
 				// make our frame visible
 				myFrame.setVisible(true);
 				
-				GridMania myPanel = new GridMania();
+				GridMania myPanel = new GridMania(); //main game panel
+				
+				ticTacPlay = new TicTacToe();// static reference to be called throughout
+				stonesPlay = new Stones();
 
 				myPanel.setSize(800, 800);
 				myPanel.setBackground(Color.BLACK);

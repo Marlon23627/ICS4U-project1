@@ -1,5 +1,5 @@
 
-public interface Grid {
+public interface GridGame {
 	
 	int generateGrid(); //generate grid at start of game
 	
@@ -8,4 +8,5 @@ public interface Grid {
 	boolean checkGridWin(); // test to see if there is winner
 	
 	void determinePlayer(boolean turn);
+	
 }
