@@ -1,14 +1,19 @@
 
 public abstract class GamePieces implements Grid
 {
-	private char type;
+	private String type;
 	
-	public GamePieces(char pieceType)
+	public GamePieces()
+	{
+		
+	}
+	
+	public GamePieces(String pieceType)
 	{
 		type = pieceType; //The piece type will determine if it's for tictactoe or stones and output an image accordingly
 	}
-	
-	public char getType()
+
+	public String getType()
 	{
 		return type; //returns the type of gamepieces being used
 	}
