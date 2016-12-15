@@ -4,6 +4,13 @@ public class Stones extends GamePieces implements Grid
 	private int stonePieceX;
 	private int stonePieceY;
 	private int[][] piece;
+	private char[][] grid = new char [5][5];
+	private int gridSize;
+	
+	public Stones()
+	{
+		gridSize = 25;
+	}
 	
 	public Stones(String sPiece, int sPieceX, int sPieceY)
 	{
@@ -13,9 +20,29 @@ public class Stones extends GamePieces implements Grid
 	}
 
 	@Override
-	public int generateGrid() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int generateGrid() 
+	{	
+		for(int i = 0; i < 5; i++)
+		{
+			for(int j = 0; j < 5; j++)
+			{
+				grid[i][j] = 'O'; // give each grid part a stone 
+			}
+		}
+		
+		System.out.println("  12345");
+		//prints out the grid with all the stones in it
+		for(int i = 0; i < 5; i++)
+		{
+			System.out.print(i + 1 + " ");
+			for(int j = 0; j < 5; j++)
+			{
+				System.out.print(grid[i][j]);
+			}
+			System.out.println();
+		}
+		
+		return gridSize;
 	}
 
 	@Override

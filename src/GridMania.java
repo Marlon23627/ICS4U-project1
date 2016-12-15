@@ -79,5 +79,5 @@ public abstract class GridMania extends JPanel
 		g.drawImage(mainMenu, 0, 0, null);
 	}
 	
-	abstract void run(); 	//how game will run
+	//abstract void run(); 	//how game will run
 }

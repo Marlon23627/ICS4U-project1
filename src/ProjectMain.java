@@ -11,6 +11,31 @@ public class ProjectMain {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Select a game: TicTacToe or Stones?"); //user selects their game
+		
+		if(sc.nextLine().equals("Stones"))
+		{
+			//creates the grid
+			System.out.println("Welcome to Stones!");
+			Grid stones = new Stones();
+			stones.generateGrid();
+			
+			//Player1 selects their coordinates for the game
+			System.out.println("Player 1, please select your coordinates");
+			GamePieces player1 = new Stones("stones", sc.nextInt(), sc.nextInt());
+			
+		}
+		
+		else if(sc.nextLine().equals("TicTacToe"))
+		{
+			Grid tictactoe = new TicTacToe();
+		}
+		
+		else
+		{
+			System.out.println("That is not a valid game!");
+		}
+		
 		GamePieces stones = new Stones("stones", sc.nextInt(), sc.nextInt());
 		stones.changePiece(); //gets rid of it now
 			
