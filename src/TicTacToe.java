@@ -3,7 +3,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
-public class TicTacToe extends GridMania implements GridGame, MouseMotionListener, MouseListener{
+public class TicTacToe extends GridMania implements GridGame{
 
 	public TicTacToe() throws IOException {
 		super();
@@ -38,15 +38,6 @@ public class TicTacToe extends GridMania implements GridGame, MouseMotionListene
 	public void determinePlayer(boolean turn) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		ProjectMain.mouseX = e.getX();
-		ProjectMain.mouseY = e.getY();
-		
-		System.out.println("THIS NEEDS TO PRINT TO REGISTER CLIIIIICKCKKS");
 	}
 
 }

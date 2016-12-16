@@ -3,7 +3,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
-public class Stones extends GridMania implements GridGame, MouseMotionListener, MouseListener{
+public class Stones extends GridMania implements GridGame{
 
 	public Stones() throws IOException {
 		super();
@@ -38,12 +38,5 @@ public class Stones extends GridMania implements GridGame, MouseMotionListener, 
 	public void determinePlayer(boolean turn) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		ProjectMain.mouseX = e.getX();
-		ProjectMain.mouseY = e.getY();
 	}
 }

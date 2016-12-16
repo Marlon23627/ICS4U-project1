@@ -118,8 +118,8 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	//how game will run
 	
 	public void checkQuitGame(){
-		if(ProjectMain.mouseX <= 970 && ProjectMain.mouseX >= 934){			//check for exit
-			if(ProjectMain.mouseY <= 67 && ProjectMain.mouseY >= 29){
+		if(ProjectMain.mouseX <= 776 && ProjectMain.mouseX >= 746){			//check for exit
+			if(ProjectMain.mouseY <= 54 && ProjectMain.mouseY >= 22){
 				ProjectMain.gameState = 0;
 			}
 		}
@@ -134,6 +134,8 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		// TODO Auto-generated method stub
 		ProjectMain.mouseX = e.getX();
 		ProjectMain.mouseY = e.getY();
+		
+		System.out.println(ProjectMain.mouseX  + "   " + ProjectMain.mouseY);
 	}
 
 	@Override
