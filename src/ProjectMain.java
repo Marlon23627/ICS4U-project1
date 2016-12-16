@@ -10,7 +10,8 @@ public class ProjectMain {
 	static int mouseX; // will be used to track mouse clicks throughout the game
 	static int mouseY;
 	
-
+	static int gameState = 0; // how we will change the menus and what graphics to output
+	
 	static TicTacToe ticTacPlay;// static reference to be called throughout
 	static Stones stonesPlay; // static setup
 	
@@ -40,28 +41,58 @@ public class ProjectMain {
 				// make our frame visible
 				myFrame.setVisible(true);
 				
-				GridMania myPanel = new GridMania(); //main game panel
+				GridMania mainPanel = new GridMania(); //main game panel
 				
 				ticTacPlay = new TicTacToe();// static reference to be called throughout
 				stonesPlay = new Stones();
 
-				myPanel.setSize(800, 800);
-				myPanel.setBackground(Color.BLACK);
+				mainPanel.setSize(800, 800);
+				mainPanel.setBackground(Color.BLACK);
 
 				// put the panel inside the frame
-				myFrame.setContentPane(myPanel);
+				myFrame.setContentPane(mainPanel);
 				
-				myPanel.requestFocus();
-
 				// enable mouse motion listener
-				myPanel.addMouseMotionListener(myPanel);
-
+				mainPanel.addMouseMotionListener(mainPanel);
 				// enable mouse listener
-				myPanel.addMouseListener(myPanel);
+				mainPanel.addMouseListener(mainPanel);
+				
+				// enable mouse motion listener --- this is for tic tac toe class ---
+				ticTacPlay.addMouseMotionListener(ticTacPlay);
+				// enable mouse listener
+				ticTacPlay.addMouseListener(ticTacPlay);
+				
+				ticTacPlay.setSize(800, 800);				
+				ticTacPlay.setBackground(Color.BLACK);
+
+				// enable mouse motion listener  -- this is for stones game -- 
+				stonesPlay.addMouseMotionListener(stonesPlay);
+				// enable mouse listener
+				stonesPlay.addMouseListener(stonesPlay);
+				
+				stonesPlay.setSize(800, 800);
+				stonesPlay.setBackground(Color.BLACK);
+
 				
 				while(true){
-					myPanel.run();
-					myPanel.repaint();
+					switch(gameState){
+					case 0: // main menu
+							mainPanel.requestFocus();
+							mainPanel.run();
+							mainPanel.repaint();
+						break;
+					case 1: // tic tact toe
+							ticTacPlay.requestFocus();
+							ticTacPlay.run(); // run the run mehtod in tic tac toe game
+							ticTacPlay.repaint();
+							break;
+					case 2: //run stones code
+							stonesPlay.requestFocus();
+							stonesPlay.run(); // same as tic tac
+							stonesPlay.repaint();
+							break;
+					}
+					
 				}
 				
 				

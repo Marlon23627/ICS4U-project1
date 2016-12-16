@@ -45,6 +45,8 @@ public class TicTacToe extends GridMania implements GridGame, MouseMotionListene
 		// TODO Auto-generated method stub
 		ProjectMain.mouseX = e.getX();
 		ProjectMain.mouseY = e.getY();
+		
+		System.out.println("THIS NEEDS TO PRINT TO REGISTER CLIIIIICKCKKS");
 	}
 
 }

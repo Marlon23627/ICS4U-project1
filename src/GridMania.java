@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 public class GridMania extends JPanel implements MouseMotionListener, MouseListener
 {
-	static int gameState = 0; // how we will change the menus
 
 	Boolean gameStart = true; // only true on first set up
 	
@@ -86,43 +85,33 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	}
 	
 	public void paintComponent(Graphics g){
-		switch(gameState){
 		
-		case 0: // main menu
-			g.drawImage(mainMenu, 0, 0, null);
-			break;
-		case 1:
-			g.drawImage(ticTac, 0, 0, null);
-			break;
-		case 2:
-			g.drawImage(stones, 0, 0, null);
-			break;
+		switch(ProjectMain.gameState){
 		
+		case 0: //main menu board
+				g.drawImage(mainMenu, 0, 0, null);
+				break;
+		case 1: // draw tic tac image board
+				g.drawImage(ticTac, 0, 0, null);
+				break;
+		
+		case 2: // draw stones image baord
+				g.drawImage(stones, 0, 0, null);
+				break;
 		}
-		
 	}
 	
 	public void run() throws IOException{
-		switch(gameState){
-		case 0: // main menu
-			if(ProjectMain.mouseX <= 382 && ProjectMain.mouseX >= 93){
-				if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
-					GridMania.gameState = 1;
-				}
+		if(ProjectMain.mouseX <= 382 && ProjectMain.mouseX >= 93){
+			if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
+					ProjectMain.gameState = 1;
 			}
-			if(ProjectMain.mouseX <= 701 && ProjectMain.mouseX >= 411){
-				if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
-					GridMania.gameState = 2;
-				}
-			}
-			break;
+		}
 		
-		case 1: // tic tact toe
-				ProjectMain.ticTacPlay.run(); // run the run mehtod in tic tac toe game
-				break;
-		case 2: //run stones code
-				ProjectMain.stonesPlay.run(); // same as tic tac
-				break;
+		if(ProjectMain.mouseX <= 701 && ProjectMain.mouseX >= 411){
+			if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
+				ProjectMain.gameState = 2;
+			}
 		}
 		
 	}
@@ -131,7 +120,7 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	public void checkQuitGame(){
 		if(ProjectMain.mouseX <= 970 && ProjectMain.mouseX >= 934){			//check for exit
 			if(ProjectMain.mouseY <= 67 && ProjectMain.mouseY >= 29){
-				GridMania.gameState = 0;
+				ProjectMain.gameState = 0;
 			}
 		}
 	}
