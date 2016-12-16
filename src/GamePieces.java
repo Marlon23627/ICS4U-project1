@@ -18,9 +18,8 @@ public abstract class GamePieces implements Grid
 		return type; //returns the type of gamepieces being used
 	}
 	
-	public abstract int getPieceX();//get x coordinate of the gamePiece
-	public abstract int getPieceY();//get y coordinate of the gamePiece
-	public abstract boolean changePiece(); //true = add, false = remove
+	public abstract boolean changePiece(); //true = adding a piece, false = removing a piece
+	public abstract int piecesTotal();
 	//May need to add a method that checks if a piece is already there?
 	
 }

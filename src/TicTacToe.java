@@ -13,16 +13,16 @@ public class TicTacToe extends GamePieces
 	}
 
 	@Override
-	public int updateGridPiece() {
+	public int updateGrid() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public boolean checkGridWin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean checkGridWin() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 	@Override
 	public void determinePlayer(boolean turn) {
@@ -31,20 +31,14 @@ public class TicTacToe extends GamePieces
 	}
 
 	@Override
-	public int getPieceX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getPieceY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public boolean changePiece() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int piecesTotal() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
