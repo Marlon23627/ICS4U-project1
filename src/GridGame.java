@@ -1,12 +1,15 @@
 
 public interface GridGame {
 	
-	int generateGrid(); //generate grid at start of game
+	void isWinner(int player); //chekck for win, pass in which player turn it was when the win took place
 	
-	int updateGridPiece(); //mechanism to put in xo or to update removed blocks (for stones)
+	void generateGrid(); //generate grid at start of game
+	
+	void updateGridPiece(); //mechanism to put in xo or to update removed blocks (for stones)
 	
 	boolean checkGridWin(); // test to see if there is winner
 	
-	void determinePlayer(boolean turn);
+	void determinePlayer(int turn);
 	
+	void pieceExist();
 }

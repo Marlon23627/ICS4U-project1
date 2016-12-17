@@ -16,11 +16,17 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	Boolean gameStart = true; // only true on first set up
 	
 	BufferedImage mainMenu, ticTac, stones, xWin, oWin, oneWin, twoWin; //menus images
-	BufferedImage xPiece, oPiece, stonePiece; //game component images
+	
+	BufferedImage xPiece[] = new BufferedImage [9];
+	BufferedImage oPiece[] = new BufferedImage [9]; 
+	BufferedImage stonePiece [] = new BufferedImage[25]; //game component images
+	
+	
 	BufferedImage xPlayer, oPlayer, player1, player2; //which player images
 	BufferedImage turn3, turn2, turn1, turn0; // which turn images
 	
 	public GridMania() throws IOException{
+
 		
 		URL fileURL; //get images all loaded in
 		
@@ -48,13 +54,19 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		
 		//pieces
 		fileURL = getClass().getResource("x.png");
-		xPiece = ImageIO.read(fileURL);
-		
+		for(int i = 0; i< 9; i++){
+			xPiece[i] = ImageIO.read(fileURL);
+		}
+
 		fileURL = getClass().getResource("o.png");
-		oPiece = ImageIO.read(fileURL);
+		for(int i = 0; i< 9; i++){
+			oPiece[i] = ImageIO.read(fileURL);
+		}
 		
 		fileURL = getClass().getResource("Stone.png");
-		stonePiece = ImageIO.read(fileURL);
+		for(int i = 0; i< 25; i++){
+			stonePiece[i] = ImageIO.read(fileURL);
+		}
 		
 		//player id
 		fileURL = getClass().getResource("Player O.png");
@@ -93,10 +105,32 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 				break;
 		case 1: // draw tic tac image board
 				g.drawImage(ticTac, 0, 0, null);
+				
+				if(TicTacToe.playerXTic == true) // draw whose playing
+					g.drawImage(xPlayer,332, 104, null);
+				else
+					g.drawImage(oPlayer,332, 104, null);
+				
+				for(int y = 168, row = 0, i = 0; row < 3 ; row++, y += 161){ 	// i is is which grid box, 0-2 on top row, 3-5 middle, etc
+					for(int x = 168; x < 500;x+=160, i++){ 
+						if(TicTacToe.imgXEXIST[i] == true)      //if at this position x should exist, draw one
+							g.drawImage(xPiece[i], x, y, null);
+						else if(TicTacToe.imgOEXIST[i] == true) // same but with o
+							g.drawImage(oPiece[i], x, y, null);
+					}
+				}
+				
 				break;
 		
 		case 2: // draw stones image baord
 				g.drawImage(stones, 0, 0, null);
+				break;
+				
+		case 3:// winner in tic tac menue
+				if(TicTacToe.xWin)
+					g.drawImage(xWin, 0, 0, null);
+				else if(TicTacToe.oWin)
+					g.drawImage(oWin, 0, 0, null);
 				break;
 		}
 	}
@@ -115,12 +149,17 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		}
 		
 	}
-	//how game will run
+	//how main menu runs
 	
-	public void checkQuitGame(){
+	public void run(boolean winScreen) throws IOException{ // this is called upon win and seves only as exit gate way code
+		checkQuitGame();
+	}
+
+	public void checkQuitGame() throws IOException{
 		if(ProjectMain.mouseX <= 776 && ProjectMain.mouseX >= 746){			//check for exit
 			if(ProjectMain.mouseY <= 54 && ProjectMain.mouseY >= 22){
 				ProjectMain.gameState = 0;
+				reInstateGame(); // exit game, start fresh again
 			}
 		}
 	}
@@ -129,6 +168,7 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		ProjectMain.ticTacPlay = new TicTacToe(); // reinstate to start fresh new game
 		ProjectMain.stonesPlay = new Stones();
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

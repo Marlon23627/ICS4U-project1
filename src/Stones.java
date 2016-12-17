@@ -11,21 +11,20 @@ public class Stones extends GridMania implements GridGame{
 	}
 	
 	@Override
-	public void run() {
+	public void run() throws IOException {
 		// TODO Auto-generated method stub
 		checkQuitGame();//check if user clicked x
 	}
 
 	@Override
-	public int generateGrid() {
+	public void generateGrid() {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	@Override
-	public int updateGridPiece() {
+	public void updateGridPiece() {
 		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -35,8 +34,21 @@ public class Stones extends GridMania implements GridGame{
 	}
 
 	@Override
-	public void determinePlayer(boolean turn) {
+	public void determinePlayer(int turn) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void isWinner(int player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pieceExist() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

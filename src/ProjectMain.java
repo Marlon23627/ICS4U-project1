@@ -91,6 +91,9 @@ public class ProjectMain {
 							stonesPlay.run(); // same as tic tac
 							stonesPlay.repaint();
 							break;
+					case 3: // this is win screen
+							mainPanel.run(true);
+							break;
 					}
 					
 				}
