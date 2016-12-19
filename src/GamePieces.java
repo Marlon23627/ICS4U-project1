@@ -5,7 +5,7 @@ public abstract class GamePieces implements Grid
 	
 	public GamePieces()
 	{
-		
+		type = "";
 	}
 	
 	public GamePieces(String pieceType)

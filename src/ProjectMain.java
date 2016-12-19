@@ -23,11 +23,11 @@ public class ProjectMain {
 			
 			//Player1 selects their coordinates for the game
 			GamePieces play = new Stones("stones", 25);
-			play.determinePlayer(true); //true = player1
 			
 			//Game ends when all stones are gone
 			while(play.piecesTotal() != 0)
 			{
+				play.determinePlayer(true); //true = player1
 				System.out.println("Player 1, please select your coordinates"); //Coordinates are selected by row then column... gotta fix
 				((Stones)play).setCoordinates(sc.nextInt(), sc.nextInt()); // another downcast!!!!
 				play.changePiece();
@@ -42,7 +42,10 @@ public class ProjectMain {
 					{
 						System.out.println("Select your new coordinates");
 						((Stones)play).setCoordinates(sc.nextInt(), sc.nextInt()); //downcast is here!!!
-						play.changePiece();
+						if(play.changePiece() == false)
+						{
+							i--;
+						}
 						play.updateGrid();
 					}
 					else
@@ -68,14 +71,16 @@ public class ProjectMain {
 					{
 						System.out.println("Select your new coordinates");
 						((Stones)play).setCoordinates(sc.nextInt(), sc.nextInt()); //downcast is here!!!
-						play.changePiece();
+						if(play.changePiece() == false) //checks if they pick a spot that has already been chosen
+						{
+							i--;
+						}
 						play.updateGrid();
 					}
 					else
 					{
 						i = 2;
 					}
-					//HAVE TO ADD CODE FOR IF THEY DONT SAY YES OR NO
 				}
 			}
 		}

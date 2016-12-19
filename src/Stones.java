@@ -63,14 +63,17 @@ public class Stones extends GamePieces implements Grid
 			}
 			System.out.println();
 		}	
-		if(stonesTotal == 0 && player == true)
+		if(stonesTotal == 0)
 		{
-			System.out.println("GAME OVER! PLAYER 1 WINS!!!"); // Gotta figure out how to end / terminate
-			
-		}
-		else if (stonesTotal == 0 && player == false)
-		{
-			System.out.println("GAME OVER! PLAYER 2 WINS!!!"); // Gotta figure out how to end /terminate
+			if(player == true)
+			{
+				System.out.println("GAME OVER! PLAYER 1 WINS!!!"); 				
+			}
+			else if (player == false)
+			{
+				System.out.println("GAME OVER! PLAYER 2 WINS!!!"); 
+			}
+			System.exit(0); //ends the game now that there are no more stones
 		}
 		return stonesTotal;
 	}
@@ -86,12 +89,7 @@ public class Stones extends GamePieces implements Grid
 	public void determinePlayer(boolean turn) 
 	{
 		//checks whos turn it is by switching between true or false in main
-		if(turn = true)
-		{
-			player = true;
-		}
-		else
-			player = false;
+		player = turn;
 	}
 	public void setCoordinates(int sX, int sY)
 	{
@@ -106,14 +104,15 @@ public class Stones extends GamePieces implements Grid
 		{
 			grid[stonePieceX - 1][stonePieceY - 1] = ' ';//gets rid of the stone in that position
 			stonesTotal--;
+			return true;
 		}
 		
 		else //if the user picks a spot that already has a stone
 		{
 			System.out.println("That stone has already been removed!");
+			return false;
 			//***FIGURE OUT HOW TO FIX MULTIPLE SIMILAR COORDIANTE PICKS***//
 		}
-		return false;
 	}
 
 	@Override
