@@ -39,7 +39,6 @@ public class TicTacToe extends GridMania implements GridGame{
 		checkQuitGame(); // see if x clicked, method in super class, THIS IS NOT WORKING NOW
 		determinePlayer(turns); //check whose turn
 		updateGridPiece();
-		System.out.println("COOL");
 		pieceExist(); // this checks positions for taken spots, used for drawing 
 		isWinner();
 	}
@@ -54,98 +53,94 @@ public class TicTacToe extends GridMania implements GridGame{
 	@Override
 	public void updateGridPiece() {
 		// TODO Auto-generated method stub
-		int oldTurns = turns; // know turn before we make move
-		do{
-			if(ProjectMain.mouseY >= 162 && ProjectMain.mouseY<= 324){ //we are clicking in top third
-				if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
-					if(gameBoard[0][0] == 0){
-						if(playerXTic)
-							gameBoard[0][0] = 1;//x player values are 1
-						else
-							gameBoard[0][0] = 2; // o player values are 2
-						++turns;//we have made a turn
-						System.out.println("works");
-					}
-				}
-				else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
-					if(gameBoard[1][0] == 0){
-						if(playerXTic)
-							gameBoard[1][0] = 1;//x player values are 1
-						else
-							gameBoard[1][0] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
-				}
-				else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
-					if(gameBoard[2][0] == 0){
-						if(playerXTic)
-							gameBoard[2][0] = 1;//x player values are 1
-						else
-							gameBoard[2][0] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
+		if(ProjectMain.mouseY >= 162 && ProjectMain.mouseY<= 324){ //we are clicking in top third
+			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
+				if(gameBoard[0][0] == 0){
+					if(playerXTic)
+						gameBoard[0][0] = 1;//x player values are 1
+					else
+						gameBoard[0][0] = 2; // o player values are 2
+					++turns;//we have made a turn
+					System.out.println("works");
 				}
 			}
-			else if(ProjectMain.mouseY > 324 && ProjectMain.mouseY<= 480){ //middle part of grid
-				if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
-					if(gameBoard[0][1] == 0){
-						if(playerXTic)
-							gameBoard[0][1] = 1;//x player values are 1
-						else
-							gameBoard[0][1] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
-				}
-				else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
-					if(gameBoard[1][1] == 0){
-						if(playerXTic)
-							gameBoard[1][1] = 1;//x player values are 1
-						else
-							gameBoard[1][1] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
-				}
-				else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
-					if(gameBoard[2][1] == 0){
-						if(playerXTic)
-							gameBoard[2][1] = 1;//x player values are 1
-						else
-							gameBoard[2][1] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
+			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
+				if(gameBoard[1][0] == 0){
+					if(playerXTic)
+						gameBoard[1][0] = 1;//x player values are 1
+					else
+						gameBoard[1][0] = 2; // o player values are 2
+					++turns;//we have made a turn
 				}
 			}
-			else if(ProjectMain.mouseY > 480 && ProjectMain.mouseY<= 646){
-				if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
-					if(gameBoard[0][2] == 0){
-						if(playerXTic)
-							gameBoard[0][2] = 1;//x player values are 1
-						else
-							gameBoard[0][2] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
-				}
-				else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
-					if(gameBoard[1][2] == 0){
-						if(playerXTic)
-							gameBoard[1][2] = 1;//x player values are 1
-						else
-							gameBoard[1][2] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
-				}
-				else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
-					if(gameBoard[2][2] == 0){
-						if(playerXTic)
-							gameBoard[2][2] = 1;//x player values are 1
-						else
-							gameBoard[2][2] = 2; // o player values are 2
-						++turns;//we have made a turn
-					}
+			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
+				if(gameBoard[2][0] == 0){
+					if(playerXTic)
+						gameBoard[2][0] = 1;//x player values are 1
+					else
+						gameBoard[2][0] = 2; // o player values are 2
+					++turns;//we have made a turn
 				}
 			}
-		}while(oldTurns < turns); //see if we made a turn or not, other wise keep looping
-		//and get rid of pieceExist() and it here
+		}
+		else if(ProjectMain.mouseY > 324 && ProjectMain.mouseY<= 480){ //middle part of grid
+			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
+				if(gameBoard[0][1] == 0){
+					if(playerXTic)
+						gameBoard[0][1] = 1;//x player values are 1
+					else
+						gameBoard[0][1] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
+				if(gameBoard[1][1] == 0){
+					if(playerXTic)
+						gameBoard[1][1] = 1;//x player values are 1
+					else
+						gameBoard[1][1] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
+				if(gameBoard[2][1] == 0){
+					if(playerXTic)
+						gameBoard[2][1] = 1;//x player values are 1
+					else
+						gameBoard[2][1] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+		}
+		else if(ProjectMain.mouseY > 480 && ProjectMain.mouseY<= 646){
+			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
+				if(gameBoard[0][2] == 0){
+					if(playerXTic)
+						gameBoard[0][2] = 1;//x player values are 1
+					else
+						gameBoard[0][2] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
+				if(gameBoard[1][2] == 0){
+					if(playerXTic)
+						gameBoard[1][2] = 1;//x player values are 1
+					else
+						gameBoard[1][2] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
+				if(gameBoard[2][2] == 0){
+					if(playerXTic)
+						gameBoard[2][2] = 1;//x player values are 1
+					else
+						gameBoard[2][2] = 2; // o player values are 2
+					++turns;//we have made a turn
+				}
+			}
+		}
 	}
 
 	@Override
