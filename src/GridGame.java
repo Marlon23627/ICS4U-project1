@@ -1,7 +1,7 @@
 
 public interface GridGame {
 	
-	void isWinner(int player); //chekck for win, pass in which player turn it was when the win took place
+	void isWinner(); //check for win
 	
 	void generateGrid(); //generate grid at start of game
 	

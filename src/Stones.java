@@ -40,7 +40,7 @@ public class Stones extends GridMania implements GridGame{
 	}
 
 	@Override
-	public void isWinner(int player) {
+	public void isWinner() {
 		// TODO Auto-generated method stub
 		
 	}
