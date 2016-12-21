@@ -7,9 +7,4 @@ public interface GridGame {
 	
 	void updateGridPiece(); //mechanism to put in xo or to update removed blocks (for stones)
 	
-	boolean checkGridWin(); // test to see if there is winner
-	
-	void determinePlayer(int turn);
-	
-	void pieceExist();
 }

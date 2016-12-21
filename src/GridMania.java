@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 public class GridMania extends JPanel implements MouseMotionListener, MouseListener
 {
 
+	ResetVariables resetGame = new TicTacToeReset(); // the instance does not matter
+													// cannot instantiate abstract class so use this concrete one
 	Boolean gameStart = true; // only true on first set up
 	
 	BufferedImage mainMenu, ticTac, stones, xWin, oWin, oneWin, twoWin, tictacNoWin; //menus images
@@ -27,7 +29,6 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	
 	public GridMania() throws IOException{
 
-		
 		URL fileURL; //get images all loaded in
 		
 		//menus
@@ -193,13 +194,14 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		if(ProjectMain.mouseX <= 382 && ProjectMain.mouseX >= 93){
 			if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
 					ProjectMain.gameState = 1;
-					ProjectMain.waitTimeSelection = System.currentTimeMillis();
+					ProjectMain.waitTimeSelection = System.currentTimeMillis(); // save snapshot of time for delay
 			}
 		}
 		
 		if(ProjectMain.mouseX <= 701 && ProjectMain.mouseX >= 411){
 			if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
 				ProjectMain.gameState = 2;
+				ProjectMain.waitTimeSelection = System.currentTimeMillis();
 			}
 		}
 		
@@ -214,26 +216,11 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		if(ProjectMain.mouseX <= 776 && ProjectMain.mouseX >= 746){			//check for exit
 			if(ProjectMain.mouseY <= 54 && ProjectMain.mouseY >= 22){
 				ProjectMain.gameState = 0;
-				reInstateGame(); // exit game, start fresh again
+				resetGame.reInstateGame(); // exit game, start fresh again
 			}
 		}
 	}
 	
-	public void reInstateGame() throws IOException {
-		ProjectMain.ticTacPlay = new TicTacToe(); // reinstate to start fresh new game
-		ProjectMain.stonesPlay = new Stones();
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		//ProjectMain.mouseX = e.getX();
-		//ProjectMain.mouseY = e.getY();
-		
-		//System.out.println(ProjectMain.mouseX  + "   " + ProjectMain.mouseY);
-	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -248,6 +235,12 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		ProjectMain.mouseY = 0;
 	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
