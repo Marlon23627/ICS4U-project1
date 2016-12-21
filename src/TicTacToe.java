@@ -11,7 +11,7 @@ public class TicTacToe extends GridMania implements GridGame{
 	
 	static boolean playerXTic = true, playerOTic = false; //needed to draw whose turn it is, and whether to draw x or o
 	
-	static boolean xWin = false, oWin = false; //will be used to see who won at the end of game
+	static boolean xWin = false, oWin = false, tictacNoWin = false; //will be used to see who won at the end of game
 
 	static boolean imgXEXIST[] = new boolean [9];
 	static boolean imgOEXIST[] = new boolean [9];
@@ -30,16 +30,19 @@ public class TicTacToe extends GridMania implements GridGame{
 		oWin = false;
 		
 		generateGrid();
-		
 	}
 
 	@Override
 	public void run() throws IOException {
 		// TODO Auto-generated method stub
 		checkQuitGame(); // see if x clicked, method in super class, THIS IS NOT WORKING NOW
+		
 		determinePlayer(turns); //check whose turn
-		updateGridPiece();
-		pieceExist(); // this checks positions for taken spots, used for drawing 
+		
+		if((System.currentTimeMillis() - ProjectMain.waitTimeSelection) >= 500){ // this checks for delay (avoids clicking into board from main menu
+			updateGridPiece();
+		}
+		//pieceExist(); // this checks positions for taken spots, used for drawing 
 		isWinner();
 	}
 
@@ -53,91 +56,142 @@ public class TicTacToe extends GridMania implements GridGame{
 	@Override
 	public void updateGridPiece() {
 		// TODO Auto-generated method stub
+		/* Game board numbering system for imgXEXIST[i] = ; this will turn X or O on into that spot
+		 * 0 | 1 | 2
+		 * 3 | 4 | 5
+		 * 6 | 7 | 8
+		 */
+		
 		if(ProjectMain.mouseY >= 162 && ProjectMain.mouseY<= 324){ //we are clicking in top third
 			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
 				if(gameBoard[0][0] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[0][0] = 1;//x player values are 1
-					else
+						imgXEXIST[0] = true;
+						System.out.println("topLX");
+					}
+					else{
 						gameBoard[0][0] = 2; // o player values are 2
+						imgOEXIST[0] = true;
+					}
 					++turns;//we have made a turn
-					System.out.println("works");
+					System.out.println("topL");
 				}
 			}
 			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
 				if(gameBoard[1][0] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[1][0] = 1;//x player values are 1
-					else
+						imgXEXIST[1] = true;
+					}
+					else{
 						gameBoard[1][0] = 2; // o player values are 2
+						imgOEXIST[1] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("topM");
 				}
 			}
 			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
 				if(gameBoard[2][0] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[2][0] = 1;//x player values are 1
-					else
+						imgXEXIST[2] = true;
+					}
+					else{
 						gameBoard[2][0] = 2; // o player values are 2
+						imgOEXIST[2] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("topR");
 				}
 			}
 		}
 		else if(ProjectMain.mouseY > 324 && ProjectMain.mouseY<= 480){ //middle part of grid
 			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
 				if(gameBoard[0][1] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[0][1] = 1;//x player values are 1
-					else
+						imgXEXIST[3] = true;
+					}
+					else{
 						gameBoard[0][1] = 2; // o player values are 2
+						imgOEXIST[3] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("midL");
 				}
 			}
 			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
 				if(gameBoard[1][1] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[1][1] = 1;//x player values are 1
-					else
+						imgXEXIST[4] = true;
+					}
+					else{
 						gameBoard[1][1] = 2; // o player values are 2
+						imgOEXIST[4] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("midM");
 				}
 			}
 			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
 				if(gameBoard[2][1] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[2][1] = 1;//x player values are 1
-					else
+						imgXEXIST[5] = true;
+					}
+					else{
 						gameBoard[2][1] = 2; // o player values are 2
+						imgOEXIST[5] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("midR");
 				}
 			}
 		}
 		else if(ProjectMain.mouseY > 480 && ProjectMain.mouseY<= 646){
 			if(ProjectMain.mouseX >= 160 && ProjectMain.mouseX <= 320){ //top left
 				if(gameBoard[0][2] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[0][2] = 1;//x player values are 1
-					else
+						imgXEXIST[6] = true;
+					}
+					else{
 						gameBoard[0][2] = 2; // o player values are 2
+						imgOEXIST[6] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("bottomL");
 				}
 			}
-			else if(ProjectMain.mouseX > 324 &&ProjectMain.mouseX <= 483){ // top middle
+			else if(ProjectMain.mouseX > 320 &&ProjectMain.mouseX <= 483){ // top middle
 				if(gameBoard[1][2] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[1][2] = 1;//x player values are 1
-					else
+						imgXEXIST[7] = true;
+					}
+					else{
 						gameBoard[1][2] = 2; // o player values are 2
+						imgOEXIST[7] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("bottomM");
 				}
 			}
 			else if(ProjectMain.mouseX > 483 &&ProjectMain.mouseX <= 642){ // top right
 				if(gameBoard[2][2] == 0){
-					if(playerXTic)
+					if(playerXTic){
 						gameBoard[2][2] = 1;//x player values are 1
-					else
+						imgXEXIST[8] = true;
+					}
+					else{
 						gameBoard[2][2] = 2; // o player values are 2
+						imgOEXIST[8] = true;
+					}
 					++turns;//we have made a turn
+					System.out.println("bottomR");
 				}
 			}
 		}
@@ -167,40 +221,45 @@ public class TicTacToe extends GridMania implements GridGame{
 	public void isWinner() {
 		boolean tempCheckWin = false;
 		
-		if((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2] )&& gameBoard[0][0] != 0){
+		if((gameBoard[0][0] == gameBoard[0][1] && gameBoard[0][1] == gameBoard[0][2] )&& gameBoard[0][0] != 0){ //row 1 down
 			tempCheckWin = true;
 		}
-		else if((gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][0] != 0){
+		else if((gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][0] != 0){ //row 2 down
 			tempCheckWin = true;
 		}
-		else if((gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2])&& gameBoard[2][0] != 0){
+		else if((gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2])&& gameBoard[2][0] != 0){ //row 3 down
 			tempCheckWin = true;
 		}
-		else if((gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[0][0] != 0){
+		else if((gameBoard[0][0] == gameBoard[1][0] && gameBoard[1][0] == gameBoard[2][0]) && gameBoard[0][0] != 0){ //row 1 across
 			tempCheckWin = true;
 		}
-		else if((gameBoard[1][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][0] != 0){
+		else if((gameBoard[0][1] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][1]) && gameBoard[0][1] != 0){ //row 2 across
 			tempCheckWin = true;
 		}
-		else if((gameBoard[2][0] == gameBoard[2][1] && gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][0] != 0){
+		else if((gameBoard[0][2] == gameBoard[1][2] && gameBoard[1][2] == gameBoard[2][2]) && gameBoard[0][2] != 0){ //row 3 across
 			tempCheckWin = true;
 		}
-		else if((gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[0][0] != 0){
+		else if((gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2]) && gameBoard[0][0] != 0){ //left corner to bottom right corner
 			tempCheckWin = true;
 		}
-		else if((gameBoard[2][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[0][2])&& gameBoard[2][0] != 0){
+		else if((gameBoard[2][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[0][2])&& gameBoard[2][0] != 0){ //right corner to left bottom corner
 			tempCheckWin = true;
 		}
 		
-		if(tempCheckWin && (turns % 2 == 0)){
+		if(tempCheckWin && ((turns-1) % 2 == 0)){
+			System.out.println("OWIN");
 			oWin = true;
 			ProjectMain.gameState = 3;
 		}
-		else if (tempCheckWin && !(turns % 2 == 0)){
+		else if (tempCheckWin && !(((turns-1) % 2 == 0))){
 			xWin = true;
 			ProjectMain.gameState = 3;
+			System.out.println("XWIN");
 		}
-			
+		else if((turns-1) == 9){// last turn made and no win?
+			tictacNoWin = true;
+			ProjectMain.gameState = 3;
+		}		
 	}
 
 	@Override
@@ -222,7 +281,6 @@ public class TicTacToe extends GridMania implements GridGame{
 					imgOEXIST[i] = true;
 			}
 		}
-		
 	}
 
 }

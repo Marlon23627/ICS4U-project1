@@ -15,7 +15,7 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 
 	Boolean gameStart = true; // only true on first set up
 	
-	BufferedImage mainMenu, ticTac, stones, xWin, oWin, oneWin, twoWin; //menus images
+	BufferedImage mainMenu, ticTac, stones, xWin, oWin, oneWin, twoWin, tictacNoWin; //menus images
 	
 	BufferedImage xPiece[] = new BufferedImage [9];
 	BufferedImage oPiece[] = new BufferedImage [9]; 
@@ -34,7 +34,7 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		fileURL = getClass().getResource("main menu.png");
 		mainMenu = ImageIO.read(fileURL);
 		
-		fileURL = getClass().getResource("stonesGame.png");
+		fileURL = getClass().getResource("Untitled-2.png");
 		stones = ImageIO.read(fileURL);
 		
 		fileURL = getClass().getResource("tic tac to.png");
@@ -45,6 +45,9 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		
 		fileURL = getClass().getResource("play2WIN.png");
 		twoWin = ImageIO.read(fileURL);
+		
+		fileURL = getClass().getResource("tictacNOWIN.png");
+		tictacNoWin = ImageIO.read(fileURL);
 		
 		fileURL = getClass().getResource("playOWIN.png");
 		oWin = ImageIO.read(fileURL);
@@ -119,18 +122,69 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 							g.drawImage(oPiece[i], x, y, null);
 					}
 				}
-				
 				break;
 		
 		case 2: // draw stones image baord
 				g.drawImage(stones, 0, 0, null);
+				
+				if(Stones.player1Turn == true) // draw whose playing
+					g.drawImage(player1,364, 76, null);
+				else
+					g.drawImage(player2,364, 76, null);
+				
+				if(Stones.player1Turn){ //each player gets 3 stone/turns to remove stone, this displays turns left
+					
+				 if(Stones.player1TurnsLeft == 3)
+					 g.drawImage(turn3,94, 76, null);
+				 
+				 else if(Stones.player1TurnsLeft == 2)
+					 g.drawImage(turn2,94, 76, null);
+				 
+				 else if(Stones.player1TurnsLeft == 1)
+					 g.drawImage(turn1,94, 76, null);
+				 
+				 else
+					 g.drawImage(turn0,94, 76, null);
+				}
+				
+				else{//must be player 2's turn
+					if(Stones.player2TurnsLeft == 3)
+						 g.drawImage(turn3,94, 76, null);
+					 
+					 else if(Stones.player2TurnsLeft == 2)
+						 g.drawImage(turn2,94, 76, null);
+					 
+					 else if(Stones.player2TurnsLeft == 1)
+						 g.drawImage(turn1,94, 76, null);
+					 else
+						 g.drawImage(turn0,94, 76, null);
+				}
+				
+				//draw stones
+				for(int y = 109, row = 0, i = 0; row < 5 ; row++, y += 123){ 	// i is is which grid box, 0-2 on top row, 3-5 middle, etc
+					for(int x = 102; x < 700; x+=122, i++){ 
+						if(Stones.stoneEXIST[i] == true)      //if at this position x should exist, draw one
+							g.drawImage(stonePiece[i], x, y, null);
+					}
+				}
 				break;
 				
-		case 3:// winner in tic tac menue
+		case 3:// winner of either game
+				
+				// if winner is tic tac toe
 				if(TicTacToe.xWin)
 					g.drawImage(xWin, 0, 0, null);
 				else if(TicTacToe.oWin)
 					g.drawImage(oWin, 0, 0, null);
+				else if(TicTacToe.tictacNoWin){
+					g.drawImage(tictacNoWin, 0, 0, null);
+				}
+				
+				//a stones winner?
+				if(Stones.oneWin)
+					g.drawImage(oneWin, 0, 0, null);
+				else if(Stones.twoWin)
+					g.drawImage(twoWin, 0, 0, null);
 				break;
 		}
 	}
@@ -139,6 +193,7 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 		if(ProjectMain.mouseX <= 382 && ProjectMain.mouseX >= 93){
 			if(ProjectMain.mouseY <= 580 && ProjectMain.mouseY >= 287){
 					ProjectMain.gameState = 1;
+					ProjectMain.waitTimeSelection = System.currentTimeMillis();
 			}
 		}
 		
@@ -172,22 +227,25 @@ public class GridMania extends JPanel implements MouseMotionListener, MouseListe
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		ProjectMain.mouseX = e.getX();
-		ProjectMain.mouseY = e.getY();
 		
-		System.out.println(ProjectMain.mouseX  + "   " + ProjectMain.mouseY);
+		//ProjectMain.mouseX = e.getX();
+		//ProjectMain.mouseY = e.getY();
+		
+		//System.out.println(ProjectMain.mouseX  + "   " + ProjectMain.mouseY);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		ProjectMain.mouseX = e.getX();
+		ProjectMain.mouseY = e.getY();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		ProjectMain.mouseX = 0;
+		ProjectMain.mouseY = 0;
 	}
 
 	@Override

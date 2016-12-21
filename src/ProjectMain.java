@@ -15,6 +15,8 @@ public class ProjectMain {
 	static TicTacToe ticTacPlay;// static reference to be called throughout
 	static Stones stonesPlay; // static setup
 	
+	static long waitTimeSelection; // holds snap shot of time for delay of click function
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		// declare and initialize a JFrame
@@ -84,12 +86,12 @@ public class ProjectMain {
 					case 1: // tic tact toe
 							ticTacPlay.requestFocus();
 							ticTacPlay.run(); // run the run mehtod in tic tac toe game
-							ticTacPlay.repaint();
+							mainPanel.repaint();
 							break;
 					case 2: //run stones code
 							stonesPlay.requestFocus();
 							stonesPlay.run(); // same as tic tac
-							stonesPlay.repaint();
+							mainPanel.repaint();
 							break;
 					case 3: // this is win screen
 							mainPanel.run(true);
