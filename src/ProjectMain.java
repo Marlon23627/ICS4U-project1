@@ -98,9 +98,8 @@ public class ProjectMain {
 							break;
 					}
 					
-				}
-				
-				
+		}
+
 	}
 
 }

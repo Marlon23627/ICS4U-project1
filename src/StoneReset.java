@@ -16,7 +16,7 @@ public class StoneReset extends ResetVariables {
 		Stones.twoWin = false;
 		
 		for(int i= 0; i<25; i++){
-			Stones.stoneEXIST[i] = true;
+			Stones.stoneEXIST[i] = true; //all stones show
 		}
 	}
 

@@ -39,6 +39,7 @@ public class TicTacToe extends GridMania implements GridGame{
 		if((System.currentTimeMillis() - ProjectMain.waitTimeSelection) >= 500){ // this checks for delay (avoids clicking into board from main menu
 			updateGridPiece();
 		}
+		
 		isWinner();
 	}
 

@@ -16,7 +16,7 @@ public class CleanUpStones implements LongCodeCleanUp {
 		 * stoneGameBoard [x][y] = 1 // a 1 denotes a user has clicked there previously
 		 */
 		if(Stones.player1TurnsLeft > 0 && Stones.player2TurnsLeft > 0){ //either one will break ability to choose piece if they have no turns left
-			if(ProjectMain.mouseY >= 109 && ProjectMain.mouseY < 200){ // top row
+			if(ProjectMain.mouseY >= 109 && ProjectMain.mouseY < 228){ // top row
 				if(ProjectMain.mouseX >= 102 && ProjectMain.mouseX < 222){ //1st x axis
 					if(Stones.stoneGameBoard[0][0] == 0){
 						Stones.stoneGameBoard[0][0] = 1; 
@@ -30,7 +30,7 @@ public class CleanUpStones implements LongCodeCleanUp {
 						}
 					}
 				}
-				else if(ProjectMain.mouseX >= 224 && ProjectMain.mouseX < 344){ //2nd x axis
+				else if(ProjectMain.mouseX >= 232 && ProjectMain.mouseX < 344){ //2nd x axis
 					if(Stones.stoneGameBoard[1][0] == 0){
 						Stones.stoneGameBoard[1][0] = 1; 
 						Stones.stoneEXIST[1] = false; // stone is off board now
@@ -84,7 +84,7 @@ public class CleanUpStones implements LongCodeCleanUp {
 				}
 				
 			}
-			else if(ProjectMain.mouseY >= 202 && ProjectMain.mouseY < 353){ //2nd row
+			else if(ProjectMain.mouseY >= 232 && ProjectMain.mouseY < 353){ //2nd row
 				if(ProjectMain.mouseX >= 102 && ProjectMain.mouseX < 222){ //1st x axis
 					if(Stones.stoneGameBoard[0][1] == 0){
 						Stones.stoneGameBoard[0][1] = 1; 
@@ -361,9 +361,7 @@ public class CleanUpStones implements LongCodeCleanUp {
 		int fullSpaces = 0; // count how many spaces in array contain 1 values
 		
 		for(int y = 0; y < 5; y++){
-			
 			for(int x = 0; x < 5; x++){
-				
 				if(Stones.stoneGameBoard[x][y] == 1)
 					fullSpaces++;
 			}
@@ -372,7 +370,7 @@ public class CleanUpStones implements LongCodeCleanUp {
 		if(fullSpaces == 25){ // we have a full grid
 			if(Stones.player1Turn){
 				Stones.oneWin = true;//player 1 has used up a turn
-				ProjectMain.gameState = 3;
+				ProjectMain.gameState = 3;// go to win screen
 			}
 			else{
 				Stones.twoWin = true; 
