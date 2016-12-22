@@ -1,0 +1,7 @@
+README:
+
+Tic Tac Toe: Game is standard, needs no instruction
+
+Stones: -Player can take 1-3 'stones' per turn
+		-Once player is done with their selection they click: 'enter move'
+		-Winner is the player that removes the last 'stone' from the grid
